@@ -1,0 +1,19 @@
+.List {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.ListItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
+}
+
+.ListItem_done {
+    text-decoration: line-through;
+}
