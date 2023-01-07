@@ -4,13 +4,13 @@
     justify-content: flex-start;
     height: 100%;
     overflow-y: scroll;
+    min-width: 400px;
 }
 
 .ListItem {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    height: 40px;
+    min-height: 40px;
     align-items: center;
 }
 
