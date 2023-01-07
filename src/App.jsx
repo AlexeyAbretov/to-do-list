@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 
 import { ToDoContext } from '@contexts';
+import { AddInputContainer, ToDoListContainer } from '@containers';
 
 import styles from './App.css';
 
@@ -33,6 +34,16 @@ const ToDoListReducer = (state, action) => {
                 items: state.items.map(x => ({
                     ...x,
                     isDone: x.id === payload ? true : x.isDone
+                }))
+            };
+        }
+        // dispatch({ type: 'REVERT', payload: 1 })
+        case 'REVERT': {
+            return {
+                ...state,
+                items: state.items.map(x => ({
+                    ...x,
+                    isDone: x.id === payload ? false : x.isDone
                 }))
             };
         }
@@ -69,7 +80,10 @@ export const App = () => {
             state,
             dispatch
         }}>
-            <div className={styles.App}>I am to-do-list</div>
+            <div className={styles.App}>
+                <AddInputContainer />
+                <ToDoListContainer />
+            </div>
         </ToDoContext.Provider>
     )
 }
