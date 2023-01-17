@@ -1,16 +1,10 @@
-import React, { useReducer } from 'react';
+import { Action, ActionKind, ToDoStateType } from "@types";
 
-import { ToDoContext } from '@contexts';
-import { AddInputContainer, ToDoListContainer } from '@containers';
-
-import styles from './App.css';
-
-const ToDoListReducer = (state, action) => {
+export const ToDoListReducer = (state: ToDoStateType, action: Action): ToDoStateType => {
     const { type, payload } = action;
 
     switch (type) {
-        // dispatch({ type: 'EDIT', payload: { id: 1, title: 'Buy koshka korm' } })
-        case 'EDIT': {
+        case ActionKind.Edit: {
             return {
                 ...state,
                 items: state.items.map(x => ({
@@ -19,16 +13,14 @@ const ToDoListReducer = (state, action) => {
                 }))
             };
         }
-        // dispatch({ type: 'REMOVE', payload: 1 })
-        case 'REMOVE': {
+        case ActionKind.Remove: {
             return {
                 ...state,
                 // 1, 2, 3 => 2, 3
                 items: state.items.filter(x => x.id !== payload)
             };
         }
-        // dispatch({ type: 'FINISH', payload: 1 })
-        case 'FINISH': {
+        case ActionKind.Finish: {
             return {
                 ...state,
                 items: state.items.map(x => ({
@@ -37,8 +29,7 @@ const ToDoListReducer = (state, action) => {
                 }))
             };
         }
-        // dispatch({ type: 'REVERT', payload: 1 })
-        case 'REVERT': {
+        case ActionKind.Revert: {
             return {
                 ...state,
                 items: state.items.map(x => ({
@@ -47,8 +38,7 @@ const ToDoListReducer = (state, action) => {
                 }))
             };
         }
-        // dispatch({ type: 'ADD', payload: { title: 'Buy popuga korm', id: 1, isDone: false } })
-        case 'ADD': {
+        case ActionKind.Add: {
             return {
                 ...state,
                 items: [
@@ -66,24 +56,6 @@ const ToDoListReducer = (state, action) => {
     }
 }
 
-const InitialToDoList = {
-    // список дел
-    // { title: 'Buy popuga korm', id: 1, isDone: false }
+export const InitialToDoList: ToDoStateType = {
     items: []
-}
-
-export const App = () => {
-    const [state, dispatch] = useReducer(ToDoListReducer, InitialToDoList);
-
-    return (
-        <ToDoContext.Provider value={{
-            state,
-            dispatch
-        }}>
-            <div className={styles.App}>
-                <AddInputContainer />
-                <ToDoListContainer />
-            </div>
-        </ToDoContext.Provider>
-    )
 }

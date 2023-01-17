@@ -3,13 +3,15 @@ import { Button } from '../Button';
 
 import styles from './AddInput.css';
 
-export const AddInput = ({ onAdd }) => {
-    const [value, setValue] = useState('');
+export const AddInput: React.FC<{
+    onAdd: (value: string) => void;
+}> = ({ onAdd }): JSX.Element => {
+    const [value, setValue] = useState<string>('');
 
     return (
         <div className={styles.AddInput}>
             <input type="text" onChange={(e) => setValue(e.target.value)} />
-            <Button title="Добавить" type="add" onClick={() => onAdd?.(value)} isDisabled={!value} />
+            <Button title="Добавить" type="add" onClick={() => onAdd(value)} isDisabled={!value} />
         </div>
     )
 }

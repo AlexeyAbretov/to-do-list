@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 
-export const DoneIcon = (props) => {
+export const DoneIcon: React.FC<SVGProps<SVGSVGElement>> = (props): JSX.Element => {
     return (
         <svg
             width="25px" height="25px" viewBox="0 0 32 32" {...props}>

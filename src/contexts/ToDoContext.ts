@@ -1,7 +1,8 @@
 
+import { ToDoContextType } from '@types';
 import React from 'react';
 
-export const ToDoContextInitialValues = {
+export const ToDoContextInitialValues: ToDoContextType = {
     state: {
         items: []
     },
